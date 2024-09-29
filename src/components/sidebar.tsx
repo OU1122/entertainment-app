@@ -1,6 +1,6 @@
 export const SideBar: React.FC = () => {
 	return (
-		<nav className="bg-SemiDarkBlue w-[96px] max-h-[960px] h-[90vh] rounded-[10px] mb-4  border flex flex-col justify-between py-5">
+		<nav className="bg-SemiDarkBlue w-[96px] max-h-[960px] h-[90vh] rounded-[10px] mb-4  border flex flex-col justify-between py-5 ml-5 shrink-0">
 			<div className="flex items-center flex-col justify-center py-2">
 				<div className="mb-10">
 					<img

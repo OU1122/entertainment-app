@@ -1,7 +1,7 @@
 export interface Movie {
 	title: string;
 	thumbnail: {
-		trending: {
+		trending?: {
 			small: string;
 			large: string;
 		};
@@ -20,4 +20,8 @@ export interface Movie {
 
 export interface MovieDataProps {
 	movieData: Movie[];
+}
+
+export interface TrendingCardProps {
+	movie: Movie;
 }
