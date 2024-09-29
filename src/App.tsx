@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Layout } from "./routes/layout";
 import { Homepage } from "./routes/homepage";
+import data from "./library/data.json";
 
 function App() {
 	const router = createBrowserRouter([
@@ -10,7 +11,7 @@ function App() {
 			children: [
 				{
 					index: true,
-					element: <Homepage />,
+					element: <Homepage movieData={data} />,
 				},
 			],
 		},

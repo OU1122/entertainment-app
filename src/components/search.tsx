@@ -1,6 +1,6 @@
-export const Search: React.FC = ({}) => {
+export const Search: React.FC = () => {
 	return (
-		<form className="flex items-center">
+		<form className="flex items-center mb-6">
 			<span>
 				<img src="../src/assets/icon-search.svg"></img>
 			</span>

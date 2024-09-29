@@ -1,10 +1,12 @@
 import { Search } from "../components/search";
+import { Trending } from "../components/trending";
+import { MovieDataProps } from "../library/types";
 
-export const Homepage: React.FC = () => {
+export const Homepage: React.FC<MovieDataProps> = ({ movieData }) => {
 	return (
 		<div className="w-full ml-10">
 			<Search />
-			<div>Test</div>
+			<Trending movieData={movieData} />
 		</div>
 	);
 };
