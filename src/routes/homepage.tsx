@@ -4,7 +4,7 @@ import { MovieDataProps } from "../library/types";
 
 export const Homepage: React.FC<MovieDataProps> = ({ movieData }) => {
 	return (
-		<div className="w-full mx-10">
+		<div className="max-w-[1240px] mx-10">
 			<Search />
 			<Trending movieData={movieData} />
 		</div>
