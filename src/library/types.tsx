@@ -29,3 +29,7 @@ export interface TrendingCardProps {
 export interface RecommendedProps {
 	movie: Movie;
 }
+
+export interface RecommendedCardProps {
+	movie: Movie;
+}
