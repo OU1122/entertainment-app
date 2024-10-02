@@ -8,7 +8,7 @@ export const Search: React.FC = () => {
 				placeholder="Search for movies or TV series"
 				type="search"
 				id="search"
-				className="caret-Red ml-4 text-[24px] font-light w-full placeholder-White placeholder-opacity-40 text-White bg-DarkBlue focus:border-b-[1px] focus:border-b-LightBlue focus:outline-none"></input>
+				className="caret-Red ml-4 text-[24px] font-light w-full placeholder-White placeholder-opacity-40 text-White bg-DarkBlue border-b-LightBlue/0 border-b-[1px] focus:border-b-LightBlue focus:outline-none transition-all duration-300"></input>
 		</form>
 	);
 };
