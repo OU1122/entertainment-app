@@ -1,10 +1,17 @@
-export const Search: React.FC = () => {
+import { SearchProps } from "../library/types";
+
+export const Search = ({
+	searchQuery,
+	setSearchQuery,
+}: SearchProps): JSX.Element => {
 	return (
 		<form className="flex items-center mb-6">
 			<span>
 				<img src="../src/assets/icon-search.svg"></img>
 			</span>
 			<input
+				value={searchQuery || ""}
+				onChange={(e) => setSearchQuery(e.target.value)}
 				placeholder="Search for movies or TV series"
 				type="search"
 				id="search"

@@ -1,3 +1,13 @@
+import { Dispatch, SetStateAction } from "react";
+
+export type SearchProps = {
+	searchQuery: string | null;
+	setSearchQuery: Dispatch<SetStateAction<string | null>>;
+};
+
+export interface SearchResultsProps extends SearchProps {
+	movieData: Movie[];
+}
 export interface Movie {
 	title: string;
 	thumbnail: {
