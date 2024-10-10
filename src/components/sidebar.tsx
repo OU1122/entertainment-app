@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { ReactComponent as HomeIcon } from "../assets/icon-nav-home.svg";
 
 export const SideBar: React.FC = () => {
 	return (
-		<nav className="bg-SemiDarkBlue w-[96px] max-h-[960px] h-[90vh] rounded-[10px] mb-4  border flex flex-col justify-between py-5 ml-5 shrink-0">
+		<nav className="bg-SemiDarkBlue w-[96px] max-h-[960px] h-[90vh] rounded-[10px] mb-4  border flex flex-col justify-between py-5 ml-8 shrink-0">
 			<div className="flex items-center flex-col justify-center py-2">
 				<div className="mb-10">
 					<img
@@ -14,13 +15,14 @@ export const SideBar: React.FC = () => {
 					<NavLink
 						to={"/"}
 						className={({ isActive }) => (isActive ? "active" : "")}>
-						<img
+						{/* <img
 							src="../src/assets/icon-nav-home.svg"
 							alt="home"
 							className="hover:cursor-pointer hover:brightness-[1.2] hover:saturate-[300%] hover:hue-rotate-[125deg] hover:contrast-100 filter"
-						/>
+						/> */}
+						<HomeIcon />
 					</NavLink>
-					<NavLink to={"/"}>
+					<NavLink to={"/movies"}>
 						<img
 							src="../src/assets/icon-nav-movies.svg"
 							alt="movies"

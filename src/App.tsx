@@ -13,6 +13,18 @@ function App() {
 					index: true,
 					element: <Homepage movieData={data} />,
 				},
+				{
+					path: "/movies/",
+					element: <div className="text-White">Movie Details</div>,
+				},
+				{
+					path: "/tv-shows/",
+					element: <div className="text-White">TV Show Details</div>,
+				},
+				{
+					path: "/bookmarked/",
+					element: <div className="text-White">Bookmarked</div>,
+				},
 			],
 		},
 	]);
