@@ -23,9 +23,3 @@
 body {
 	background-color: #10141e;
 }
-
-.active {
-	border: 1px white solid;
-	padding: 4px;
-	border-radius: 5px;
-}

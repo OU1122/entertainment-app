@@ -2,6 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Layout } from "./routes/layout";
 import { Homepage } from "./routes/homepage";
 import data from "./library/data.json";
+import { Movies } from "./routes/movies";
+import { Shows } from "./routes/shows";
+import { Bookmarks } from "./routes/bookmarks";
 
 function App() {
 	const router = createBrowserRouter([
@@ -15,15 +18,15 @@ function App() {
 				},
 				{
 					path: "/movies/",
-					element: <div className="text-White">Movie Details</div>,
+					element: <Movies movieData={data} />,
 				},
 				{
 					path: "/tv-shows/",
-					element: <div className="text-White">TV Show Details</div>,
+					element: <Shows movieData={data} />,
 				},
 				{
-					path: "/bookmarked/",
-					element: <div className="text-White">Bookmarked</div>,
+					path: "/bookmarks/",
+					element: <Bookmarks movieData={data} />,
 				},
 			],
 		},
