@@ -6,10 +6,10 @@ import { ReactComponent as BookmarkIcon } from "../assets/icon-nav-bookmark.svg"
 
 export const SideBar: React.FC = () => {
 	return (
-		<nav className="bg-SemiDarkBlue lg:w-[96px] max-h-[960px] lg:h-[90vh] rounded-[10px] mb-4  border flex  flex-row lg:flex-col justify-between py-4 lg:ml-8 ml-4 shrink-0 h-[100px]">
+		<nav className="bg-SemiDarkBlue lg:w-[96px] max-h-[960px] lg:h-[90vh] rounded-[10px] mb-4  border flex  flex-row lg:flex-col justify-between py-4 lg:mx-8 mx-4 px-4 shrink-0 h-[73px] w-full">
 			<div className="flex items-center flex-row lg:flex-col justify-between lg:justify-between py-2 w-full h-full">
 				<div className="flex items-center justify-center md:flex-col">
-					<div className="lg:mb-10 mb-0 flex items-center justify-center px-2 md:px-0 ">
+					<div className="lg:mb-10 mb-0 flex items-center justify-center px-2 lg:px-0 ">
 						<img
 							src="../src/assets/logo.svg"
 							alt=""
@@ -117,7 +117,7 @@ export const SideBar: React.FC = () => {
 						/>
 					</NavLink>
 				</div>
-				<div className="flex items-center justify-center py-4 px-2 md:px-0">
+				<div className="flex items-center justify-center py-4 px-2 lg:px-0">
 					<img
 						className="w-10 h-10 border-White border rounded-full"
 						src="../src/assets/image-avatar.png"

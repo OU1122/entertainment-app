@@ -2,8 +2,8 @@ import { RecommendedCardProps } from "../library/types";
 
 export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	return (
-		<div className="w-[160px] h-[150px] lg:w-[260px] xl:w-[280px] lg:h-[226px] shrink-0 rounded-2xl relative group/play">
-			<div className="w-[160px] h-[103px] lg:w-[260px] xl:w-[280px] lg:h-[174px] relative">
+		<div className="w-[160px] h-[150px] lg:w-[220px] xl:w-[280px] lg:h-[226px]  rounded-2xl relative group/play">
+			<div className="w-[160px] h-[103px] lg:w-[220px] xl:w-[280px] lg:h-[174px] relative">
 				<img
 					src={movie.thumbnail.regular.large}
 					className="object-cover rounded-2xl w-full h-full"
@@ -26,7 +26,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 					</div>
 				</div>
 			</div>
-			<div className="text-White/75 text-xs lg:text-lg flex flex-col gap-1 pt-1">
+			<div className="text-White/75 text-xs lg:text-lg flex flex-col pt-1">
 				<div className="flex flex-row items-center gap-2 text-[11px] lg:text-[15px] ">
 					<div className="">
 						<span>{movie.year}</span>
