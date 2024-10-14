@@ -3,9 +3,9 @@ import { Search } from "../components/search";
 
 import { MovieDataProps } from "../library/types";
 import { SearchResult } from "../components/searchResult";
-import { CollectionComponent } from "../components/collectionComponent";
+import { BookmarksComponent } from "../components/bookmarks";
 
-export const Movies: React.FC<MovieDataProps> = ({ movieData }) => {
+export const Bookmarks: React.FC<MovieDataProps> = ({ movieData }) => {
 	const [searchQuery, setSearchQuery] = useState<string | null>(null);
 
 	return (
@@ -24,7 +24,7 @@ export const Movies: React.FC<MovieDataProps> = ({ movieData }) => {
 				/>
 			) : (
 				<>
-					<CollectionComponent
+					<BookmarksComponent
 						type="bookmarks"
 						movieData={movieData}
 					/>
