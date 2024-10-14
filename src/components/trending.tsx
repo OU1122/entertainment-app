@@ -30,7 +30,7 @@ export const Trending: React.FC<MovieDataProps> = ({ movieData }) => {
 							spaceBetween: 20,
 						},
 						1024: {
-							slidesPerView: 3,
+							slidesPerView: 2.6,
 							spaceBetween: 25,
 						},
 					}}

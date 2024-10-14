@@ -3,11 +3,13 @@ import { Dispatch, SetStateAction } from "react";
 export type SearchProps = {
 	searchQuery: string | null;
 	setSearchQuery: Dispatch<SetStateAction<string | null>>;
+	type?: "movies" | "TV series" | "bookmarks";
 };
 
 export interface SearchResultsProps extends SearchProps {
 	movieData: Movie[];
 }
+
 export interface Movie {
 	title: string;
 	thumbnail: {
@@ -30,6 +32,9 @@ export interface Movie {
 
 export interface MovieDataProps {
 	movieData: Movie[];
+}
+export interface CollectionComponentProps extends MovieDataProps {
+	type: string;
 }
 
 export interface TrendingCardProps {
