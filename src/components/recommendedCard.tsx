@@ -27,7 +27,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 				</div>
 			</div>
 			<div className="text-White/75 text-xs lg:text-lg flex flex-col pt-1">
-				<div className="flex flex-row items-center gap-1 md:gap-2 text-[11px] lg:text-[15px] ">
+				<div className="flex flex-row items-center gap-1 md:gap-2 text-[11px] lg:text-[13px] xl:text-[15px] ">
 					<div className="">
 						<span>{movie.year}</span>
 					</div>{" "}
@@ -48,7 +48,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 					</div>
 				</div>
 				<div>
-					<h2 className="text-White text-[14px] lg:text-[24px] font-medium">
+					<h2 className="text-White text-[14px] md:text-[18px] xl:text-[24px] font-medium">
 						{movie.title}
 					</h2>
 				</div>

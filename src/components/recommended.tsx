@@ -5,7 +5,7 @@ export const Recommended: React.FC<MovieDataProps> = ({ movieData }) => {
 	const recommendedMovies = movieData.filter((movie) => !movie.isTrending);
 
 	return (
-		<div className="w-full max-w-[1240px] pb-2 px-2">
+		<div className="w-full max-w-[1240px] pb-2 px-4">
 			<h2 className="text-White text-[32px] font-light mb-6">
 				Recommended for you
 			</h2>

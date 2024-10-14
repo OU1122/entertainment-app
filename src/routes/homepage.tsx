@@ -9,7 +9,7 @@ export const Homepage: React.FC<MovieDataProps> = ({ movieData }) => {
 	const [searchQuery, setSearchQuery] = useState<string | null>(null);
 
 	return (
-		<div className="max-w-[1240px] mb-10 w-full">
+		<div className="max-w-[1240px] mx-10 mb-10 w-full overflow-hidden">
 			<Search
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}

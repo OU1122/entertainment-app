@@ -5,7 +5,7 @@ export const Search = ({
 	setSearchQuery,
 }: SearchProps): JSX.Element => {
 	return (
-		<form className="flex items-center mb-6">
+		<form className="flex items-center mb-6 px-4">
 			<span>
 				<img src="../src/assets/icon-search.svg"></img>
 			</span>

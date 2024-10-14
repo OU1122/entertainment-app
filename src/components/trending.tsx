@@ -11,38 +11,44 @@ export const Trending: React.FC<MovieDataProps> = ({ movieData }) => {
 	const trendingMovies = movieData.filter((movie) => movie.isTrending);
 
 	return (
-		<div className="w-full overflow-x-scroll pb-2 mb-10 no-scrollbar">
+		<div className="overflow-x-scroll pb-2 mb-10 no-scrollbar px-4 max-w-[1240px] flex flex-col ">
 			<h2 className="text-White text-[32px] font-light mb-6">Trending</h2>
-			<Swiper
-				ref={swiperElRef}
-				spaceBetween={38}
-				slidesPerView={2.5}
-				navigation={false}
-				pagination={false}
-				breakpoints={{
-					768: {
-						slidesPerView: 2.5, // Show 2 slides for screen widths >= 768px
-						spaceBetween: 30,
-					},
-					1024: {
-						slidesPerView: 2.5, // Show 3 slides for screen widths >= 1024px
-						spaceBetween: 40,
-					},
-				}}
-				onSwiper={(swiper) => {
-					swiper.on("progress", (progress) => {
-						console.log("Progress:", progress);
-					});
-					swiper.on("slideChange", () => {
-						console.log("Slide changed");
-					});
-				}}>
-				{trendingMovies.map((movie, index) => (
-					<SwiperSlide key={index}>
-						<TrendingCard movie={movie} />
-					</SwiperSlide>
-				))}
-			</Swiper>
+			<div className="w-full">
+				<Swiper
+					ref={swiperElRef}
+					slidesPerView={1.2}
+					spaceBetween={5}
+					navigation={false}
+					pagination={false}
+					breakpoints={{
+						365: {
+							slidesPerView: 1.6,
+						},
+						530: { slidesPerView: 2 },
+						740: {
+							slidesPerView: 2.4,
+							spaceBetween: 20,
+						},
+						1024: {
+							slidesPerView: 3,
+							spaceBetween: 25,
+						},
+					}}
+					onSwiper={(swiper) => {
+						swiper.on("progress", (progress) => {
+							console.log("Progress:", progress);
+						});
+						swiper.on("slideChange", () => {
+							console.log("Slide changed");
+						});
+					}}>
+					{trendingMovies.map((movie, index) => (
+						<SwiperSlide key={index}>
+							<TrendingCard movie={movie} />
+						</SwiperSlide>
+					))}
+				</Swiper>
+			</div>
 		</div>
 	);
 };

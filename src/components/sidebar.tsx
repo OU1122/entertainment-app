@@ -6,7 +6,7 @@ import { ReactComponent as BookmarkIcon } from "../assets/icon-nav-bookmark.svg"
 
 export const SideBar: React.FC = () => {
 	return (
-		<nav className="bg-SemiDarkBlue lg:w-[96px] max-h-[960px] lg:h-[90vh] rounded-[10px] mb-4  border flex  flex-row lg:flex-col justify-between py-4 lg:mx-8 mx-4 px-4 shrink-0 h-[73px] w-full">
+		<nav className="bg-SemiDarkBlue lg:w-[96px] max-h-[960px] lg:h-[90vh] rounded-[10px] mb-4  border flex align-items flex-row lg:flex-col justify-between py-4 px-4 lg:ml-10 mx-1 shrink-0 h-[73px] w-full">
 			<div className="flex items-center flex-row lg:flex-col justify-between lg:justify-between py-2 w-full h-full">
 				<div className="flex items-center justify-center md:flex-col">
 					<div className="lg:mb-10 mb-0 flex items-center justify-center px-2 lg:px-0 ">

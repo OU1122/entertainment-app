@@ -2,7 +2,7 @@ import { TrendingCardProps } from "../library/types";
 
 export const TrendingCard: React.FC<TrendingCardProps> = ({ movie }) => {
 	return (
-		<div className="max-w-[240px] max-h-[140px] md:max-w-[470px] md:max-h-[240px] shrink-0 rounded-2xl relative group/play ">
+		<div className="max-w-[240px] max-h-[140px] md:max-w-[470px] md:max-h-[240px] rounded-2xl relative group/play ">
 			<img
 				src={movie.thumbnail.trending?.large}
 				className="w-full h-full object-cover rounded-2xl"
