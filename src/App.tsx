@@ -5,6 +5,8 @@ import data from "./library/data.json";
 import { Movies } from "./routes/movies";
 import { Shows } from "./routes/shows";
 import { Bookmarks } from "./routes/bookmarks";
+import { Signup } from "./routes/signup";
+import { Login } from "./routes/login";
 
 function App() {
 	const router = createBrowserRouter([
@@ -29,6 +31,14 @@ function App() {
 					element: <Bookmarks movieData={data} />,
 				},
 			],
+		},
+		{
+			path: "/signup/",
+			element: <Signup />,
+		},
+		{
+			path: "/login/",
+			element: <Login />,
 		},
 	]);
 
