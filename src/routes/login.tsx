@@ -11,7 +11,7 @@ export const Login: React.FC = () => {
 					src="/assets/logo.svg"
 					alt="logo"></img>
 			</div>
-			<div className="max-w-[400px] max-h-[418px] bg-SemiDarkBlue rounded-3xl  flex flex-col items-start justify-around p-6 w-full h-full">
+			<div className="max-w-[400px] max-h-[418px] bg-SemiDarkBlue rounded-3xl  flex flex-col items-start justify-around py-6 px-8 w-full h-full">
 				<h2 className="text-White w-full text-[32px] font-extralight">
 					Sign Up
 				</h2>
