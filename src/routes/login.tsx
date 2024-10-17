@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Login: React.FC = () => {
-	const [searchQuery, setSearchQuery] = useState<string | null>(null);
-
 	return (
 		<div className="max-w-[1240px] h-screen w-full mx-auto flex flex-col items-center justify-center px-6 gap-16">
 			<div className="mt-6">
-				<img
-					className="w-10 h-10"
-					src="/assets/logo.svg"
-					alt="logo"></img>
+				<Link to={"/"}>
+					<img
+						className="w-10 h-10"
+						src="/assets/logo.svg"
+						alt="logo"></img>
+				</Link>
 			</div>
 			<div className="max-w-[400px] max-h-[373px] bg-SemiDarkBlue rounded-3xl  flex flex-col items-start justify-around py-6 px-8 w-full h-full mb-6">
 				<h2 className="text-White w-full text-[32px] font-extralight">
@@ -34,9 +34,11 @@ export const Login: React.FC = () => {
 				</form>
 				<p className="text-White self-center font-extralight">
 					Don't have an account?{" "}
-					<span className="text-Red font-bold cursor-pointer">
-						Sign Up
-					</span>
+					<Link to={"/signup"}>
+						<span className="text-Red font-bold cursor-pointer">
+							Sign Up
+						</span>
+					</Link>
 				</p>
 			</div>
 		</div>

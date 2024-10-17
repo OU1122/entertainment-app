@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as HomeIcon } from "../assets/icon-nav-home.svg";
 import { ReactComponent as MovieIcon } from "../assets/icon-nav-movies.svg";
 import { ReactComponent as ShowIcon } from "../assets/icon-nav-tv-series.svg";
@@ -118,11 +118,13 @@ export const SideBar: React.FC = () => {
 					</NavLink>
 				</div>
 				<div className="flex items-center justify-center py-4 px-2 lg:px-0">
-					<img
-						className="w-10 h-10 border-White border rounded-full"
-						src="../src/assets/image-avatar.png"
-						alt=""
-					/>
+					<Link to="/">
+						<img
+							className="w-10 h-10 border-White border rounded-full"
+							src="../src/assets/image-avatar.png"
+							alt=""
+						/>
+					</Link>
 				</div>
 			</div>
 		</nav>
