@@ -2,7 +2,9 @@ import { MovieDataProps } from "../library/types";
 import { RecommendedCard } from "./recommendedCard";
 
 export const Recommended: React.FC<MovieDataProps> = ({ movieData }) => {
-	const recommendedMovies = movieData.filter((movie) => !movie.isTrending);
+	const recommendedMovies = movieData
+		? movieData.filter((movie) => !movie.is_trending)
+		: [];
 
 	return (
 		<div className="w-full max-w-[1240px] pb-2 px-4">

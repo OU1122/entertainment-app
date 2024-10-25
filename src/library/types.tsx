@@ -26,8 +26,8 @@ export interface Movie {
 	year: number;
 	category: string;
 	rating: string;
-	isBookmarked: boolean;
-	isTrending: boolean;
+	is_trending: boolean;
+	is_bookmarked: boolean;
 }
 
 export interface MovieDataProps {

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Search } from "../components/search";
 
 import { MovieDataProps } from "../library/types";
-import { SearchResult } from "../components/searchResult";
 import { BookmarksComponent } from "../components/bookmarks";
+import { BookmarkSearchResult } from "../components/bookmarkSearchResult";
 
 export const Bookmarks: React.FC<MovieDataProps> = ({ movieData }) => {
 	const [searchQuery, setSearchQuery] = useState<string | null>(null);
@@ -16,7 +16,7 @@ export const Bookmarks: React.FC<MovieDataProps> = ({ movieData }) => {
 				type="bookmarks"
 			/>
 			{searchQuery ? (
-				<SearchResult
+				<BookmarkSearchResult
 					movieData={movieData}
 					searchQuery={searchQuery}
 					setSearchQuery={setSearchQuery}

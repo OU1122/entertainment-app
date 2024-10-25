@@ -1,14 +1,20 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Layout } from "./routes/layout";
 import { Homepage } from "./routes/homepage";
-import data from "./library/data.json";
 import { Movies } from "./routes/movies";
 import { Shows } from "./routes/shows";
 import { Bookmarks } from "./routes/bookmarks";
 import { Signup } from "./routes/signup";
 import { Login } from "./routes/login";
+import { useQuery } from "@tanstack/react-query";
+import { axiosFetch } from "./library/axiosFetch";
 
 function App() {
+	const { data: movies, isPending } = useQuery({
+		queryKey: ["posts"],
+		queryFn: () => axiosFetch("http://localhost:3000/api/movies"),
+	});
+
 	const router = createBrowserRouter([
 		{
 			path: "/",
@@ -16,19 +22,19 @@ function App() {
 			children: [
 				{
 					index: true,
-					element: <Homepage movieData={data} />,
+					element: <Homepage movieData={movies || []} />,
 				},
 				{
 					path: "/movies/",
-					element: <Movies movieData={data} />,
+					element: <Movies movieData={movies || []} />,
 				},
 				{
 					path: "/tv-shows/",
-					element: <Shows movieData={data} />,
+					element: <Shows movieData={movies || []} />,
 				},
 				{
 					path: "/bookmarks/",
-					element: <Bookmarks movieData={data} />,
+					element: <Bookmarks movieData={movies || []} />,
 				},
 			],
 		},
