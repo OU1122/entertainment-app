@@ -13,7 +13,6 @@ export const Trending: React.FC<MovieDataProps> = ({ movieData }) => {
 		? movieData.filter((movie) => movie.is_trending)
 		: [];
 
-	console.log(trendingMovies);
 	return (
 		<div className="overflow-x-scroll pb-2 mb-10 no-scrollbar px-4 max-w-[1240px] flex flex-col ">
 			<h2 className="text-White text-[32px] font-light mb-6">Trending</h2>

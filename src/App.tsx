@@ -8,12 +8,44 @@ import { Signup } from "./routes/signup";
 import { Login } from "./routes/login";
 import { useQuery } from "@tanstack/react-query";
 import { axiosFetch } from "./library/axiosFetch";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+	"https://mtdxodsbbwnvqdxpaqrl.supabase.co",
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10ZHhvZHNiYndudnFkeHBhcXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk4NjYxNDcsImV4cCI6MjA0NTQ0MjE0N30.Vpb6InT8sdTsC3DueR1GQEyyMuoZjvFIO4PvuH76ayM"
+);
 
 function App() {
 	const { data: movies, isPending } = useQuery({
 		queryKey: ["posts"],
 		queryFn: () => axiosFetch("http://localhost:3000/api/movies"),
 	});
+	/* 
+	useEffect(() => {
+		supabase.auth.getSession().then(({ data: { session } }) => {
+			setSession(session);
+		});
+
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((_event, session) => {
+			setSession(session);
+		});
+
+		return () => subscription.unsubscribe();
+	}, []);
+	console.log(session);
+	if (!session) {
+		return (
+			<Auth
+				supabaseClient={supabase}
+				appearance={{ theme: ThemeSupa }}
+			/>
+		);
+	} else {
+		return <div>Logged in!</div>;
+	}
+} */
 
 	const router = createBrowserRouter([
 		{
