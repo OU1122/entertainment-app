@@ -1,33 +1,21 @@
-import { createClient } from "@supabase/supabase-js";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-const supabase = createClient(
-	"https://mtdxodsbbwnvqdxpaqrl.supabase.co",
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10ZHhvZHNiYndudnFkeHBhcXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk4NjYxNDcsImV4cCI6MjA0NTQ0MjE0N30.Vpb6InT8sdTsC3DueR1GQEyyMuoZjvFIO4PvuH76ayM"
-);
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../library/authProvider";
 
 export const Signup: React.FC = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordCheck, setPasswordCheck] = useState("");
-	const [error, setError] = useState<null | string>(null);
+	const { signUp, loading, error, user } = useAuth();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (password !== passwordCheck) {
-			setError("Passwords do not match");
+		await signUp(email, password);
+		if (user) {
+			navigate("/");
 		} else {
-			const { data, error } = await supabase.auth.signUp({
-				email,
-				password,
-			});
-			if (error) {
-				setError(error.message);
-				console.log(error);
-			} else {
-				console.log("Signup successful", data);
-			}
+			console.error("Sign up failed:", error);
 		}
 	};
 
@@ -69,9 +57,11 @@ export const Signup: React.FC = () => {
 						onChange={(e) => setPasswordCheck(e.target.value)}></input>
 					<button
 						type="submit"
+						disabled={loading}
 						className="bg-Red max-h-[48px] rounded-lg text-White text-[15px] p-4 hover:text-DarkBlue hover:bg-White flex items-center justify-center transition-colors ease-in">
 						Create an account
 					</button>
+					{error && <p>{error}</p>}
 				</form>
 				<p className="text-White self-center font-extralight">
 					Already have an account?{" "}

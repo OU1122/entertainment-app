@@ -1,4 +1,18 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
+import { User } from "@supabase/supabase-js";
+
+export type AuthContextType = {
+	user: User | null;
+	loading: boolean;
+	error: string | null;
+	signUp: (email: string, password: string) => Promise<void>;
+	signIn: (email: string, password: string) => Promise<void>;
+	signOut: () => Promise<void>;
+};
+
+export interface AuthProviderProps {
+	children: ReactNode;
+}
 
 export type SearchProps = {
 	searchQuery: string | null;
