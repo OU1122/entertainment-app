@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+	Navigate,
+	RouterProvider,
+	createBrowserRouter,
+} from "react-router-dom";
 import { Layout } from "./routes/layout";
 import { Homepage } from "./routes/homepage";
 import { Movies } from "./routes/movies";
@@ -16,6 +20,11 @@ function App() {
 	const { data: movies } = useQuery({
 		queryKey: ["posts"],
 		queryFn: () => axiosFetch("http://localhost:3000/api/movies"),
+	});
+
+	const { data: bookmarks } = useQuery({
+		queryKey: ["bookmarks"],
+		queryFn: () => axiosFetch("http://localhost:3000/api/bookmarks"),
 	});
 
 	const router = createBrowserRouter([
@@ -37,17 +46,22 @@ function App() {
 				},
 				{
 					path: "/bookmarks/",
-					element: <Bookmarks movieData={movies || []} />,
+					element: (
+						<Bookmarks
+							movieData={movies || []}
+							bookmarks={bookmarks}
+						/>
+					),
 				},
 			],
 		},
 		{
 			path: "/signup/",
-			element: <Signup />,
+			element: user ? <Navigate to={"/"} /> : <Signup />,
 		},
 		{
 			path: "/login/",
-			element: <Login />,
+			element: user ? <Navigate to={"/"} /> : <Login />,
 		},
 	]);
 

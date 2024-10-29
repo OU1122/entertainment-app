@@ -1,6 +1,20 @@
+import { useAuth } from "../library/authProvider";
+import { axiosPost } from "../library/axiosFetch";
 import { RecommendedCardProps } from "../library/types";
 
 export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
+	const { user } = useAuth();
+
+	const setBookmark = () => {
+		if (user) {
+			try {
+				const response = axiosPost(user.id, movie.id);
+				console.log(response);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
 	return (
 		<div className="max-w-[160px] max-h-[150px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-[246px]  rounded-2xl relative group/play">
 			<div className="max-w-[160px] max-h-[103px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-full relative">
@@ -9,7 +23,9 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 					className="object-cover rounded-2xl w-full h-full"
 					alt={movie.title}></img>
 
-				<div className="absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10">
+				<div
+					onClick={setBookmark}
+					className="absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10">
 					<img
 						src="./assets/icon-bookmark-empty.svg"
 						alt="bookmark"

@@ -25,6 +25,7 @@ export interface SearchResultsProps extends SearchProps {
 }
 
 export interface Movie {
+	id: number;
 	title: string;
 	thumbnail: {
 		trending?: {
@@ -42,6 +43,16 @@ export interface Movie {
 	rating: string;
 	is_trending: boolean;
 	is_bookmarked: boolean;
+}
+
+export interface BookmarksProps {
+	bookmarks: Bookmark;
+}
+
+export interface Bookmark {
+	id: string;
+	user_id: string;
+	movie_id: number;
 }
 
 export interface MovieDataProps {
