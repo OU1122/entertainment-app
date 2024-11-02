@@ -7,7 +7,7 @@ import { BookmarkSearchResult } from "../components/bookmarkSearchResult";
 
 export const Bookmarks: React.FC<BookmarksProps> = ({ bookmarks }) => {
 	const [searchQuery, setSearchQuery] = useState<string | null>(null);
-	console.log(bookmarks);
+	
 	return (
 		<div className="max-w-[1240px] mx-10 mb-10 w-full overflow-hidden">
 			<Search
