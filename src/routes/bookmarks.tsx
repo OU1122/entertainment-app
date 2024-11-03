@@ -5,9 +5,12 @@ import { BookmarksProps } from "../library/types";
 import { BookmarksComponent } from "../components/bookmarks";
 import { BookmarkSearchResult } from "../components/bookmarkSearchResult";
 
-export const Bookmarks: React.FC<BookmarksProps> = ({ bookmarks }) => {
+export const Bookmarks: React.FC<BookmarksProps> = ({
+	bookmarks,
+	movieData,
+}) => {
 	const [searchQuery, setSearchQuery] = useState<string | null>(null);
-	
+
 	return (
 		<div className="max-w-[1240px] mx-10 mb-10 w-full overflow-hidden">
 			<Search
@@ -17,6 +20,7 @@ export const Bookmarks: React.FC<BookmarksProps> = ({ bookmarks }) => {
 			/>
 			{searchQuery ? (
 				<BookmarkSearchResult
+					bookmarks={bookmarks}
 					movieData={movieData}
 					searchQuery={searchQuery}
 					setSearchQuery={setSearchQuery}
@@ -27,6 +31,7 @@ export const Bookmarks: React.FC<BookmarksProps> = ({ bookmarks }) => {
 					<BookmarksComponent
 						type="bookmarks"
 						movieData={movieData}
+						bookmarks={bookmarks}
 					/>
 				</>
 			)}

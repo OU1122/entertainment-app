@@ -1,12 +1,13 @@
-import { SearchResultsProps } from "../library/types";
+import { BookmarkSearchResultsProps } from "../library/types";
 import { RecommendedCard } from "./recommendedCard";
 
-export const BookmarkSearchResult: React.FC<SearchResultsProps> = ({
+export const BookmarkSearchResult: React.FC<BookmarkSearchResultsProps> = ({
 	movieData,
 	searchQuery,
+	bookmarks,
 }) => {
 	let searchResults = movieData.filter((data) => data.is_bookmarked);
-
+	console.log(bookmarks);
 	if (searchQuery) {
 		searchResults = searchResults.filter((data) =>
 			data.title.toLowerCase().includes(searchQuery.toLowerCase())

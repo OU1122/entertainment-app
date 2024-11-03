@@ -3,6 +3,7 @@ import { RecommendedCard } from "./recommendedCard";
 
 export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	movieData,
+	bookmarks,
 }) => {
 	const bookmarkedMovies = movieData.filter(
 		(data) => data.category === "Movie" && data.is_bookmarked === true
@@ -10,6 +11,11 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	const bookmarkedShows = movieData.filter(
 		(data) => data.category === "TV Series" && data.is_bookmarked === true
 	);
+
+	const bookmarkedMovies2 = movieData.filter((movie) =>
+		bookmarks?.some((bookmark) => bookmark.movie_id === movie.id)
+	);
+	console.log(bookmarkedMovies2);
 
 	return (
 		<div className="w-full max-w-[1240px] pb-2 px-4">

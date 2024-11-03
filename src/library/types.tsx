@@ -20,8 +20,9 @@ export type SearchProps = {
 	type?: "movies" | "TV series" | "bookmarks";
 };
 
-export interface SearchResultsProps extends SearchProps {
+export interface BookmarkSearchResultsProps extends SearchProps {
 	movieData: Movie[];
+	bookmarks: Bookmark[];
 }
 
 export interface Movie {
@@ -46,7 +47,8 @@ export interface Movie {
 }
 
 export interface BookmarksProps {
-	bookmarks: Bookmark;
+	bookmarks: Bookmark[];
+	movieData: Movie[];
 }
 
 export interface Bookmark {
@@ -60,6 +62,7 @@ export interface MovieDataProps {
 }
 export interface CollectionComponentProps extends MovieDataProps {
 	type: string;
+	bookmarks: Bookmark[] | null;
 }
 
 export interface TrendingCardProps {
