@@ -6,16 +6,18 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	bookmarks,
 }) => {
 	const bookmarkedMovies = movieData.filter(
-		(data) => data.category === "Movie" && data.is_bookmarked === true
-	);
-	const bookmarkedShows = movieData.filter(
-		(data) => data.category === "TV Series" && data.is_bookmarked === true
+		(movie) =>
+			movie.category === "Movie" &&
+			bookmarks?.some((bookmark) => bookmark.movie_id === movie.id)
 	);
 
-	const bookmarkedMovies2 = movieData.filter((movie) =>
-		bookmarks?.some((bookmark) => bookmark.movie_id === movie.id)
+	const bookmarkedShows = movieData.filter(
+		(data) =>
+			data.category === "TV Series" &&
+			bookmarks?.some((bookmark) => bookmark.movie_id === data.id)
 	);
-	console.log(bookmarkedMovies2);
+
+	console.log(bookmarkedMovies);
 
 	return (
 		<div className="w-full max-w-[1240px] pb-2 px-4">
@@ -23,23 +25,35 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 				Bookmarked Movies
 			</h2>
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  justify-items-center lg:justify-items-start gap-[10px] gap-y-6 mb-10">
-				{bookmarkedMovies.map((movie, index) => (
-					<RecommendedCard
-						key={index}
-						movie={movie}
-					/>
-				))}
+				{bookmarkedMovies.length > 0 ? (
+					bookmarkedMovies.map((movie, index) => (
+						<RecommendedCard
+							key={index}
+							movie={movie}
+						/>
+					))
+				) : (
+					<p className="text-White text-[20px] font-light">
+						Your bookmarked movies will show here
+					</p>
+				)}
 			</div>
 			<h2 className="text-White text-[32px] font-light mb-6">
 				Bookmarked TV Series
 			</h2>
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  justify-items-center lg:justify-items-start gap-[10px] gap-y-6">
-				{bookmarkedShows.map((movie, index) => (
-					<RecommendedCard
-						key={index}
-						movie={movie}
-					/>
-				))}
+				{bookmarkedShows.length > 0 ? (
+					bookmarkedShows.map((movie, index) => (
+						<RecommendedCard
+							key={index}
+							movie={movie}
+						/>
+					))
+				) : (
+					<p className="text-White text-[20px] font-light">
+						Your bookmarked TV series will show here
+					</p>
+				)}
 			</div>
 		</div>
 	);
