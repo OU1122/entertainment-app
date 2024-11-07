@@ -8,16 +8,16 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	const bookmarkedMovies = movieData.filter(
 		(movie) =>
 			movie.category === "Movie" &&
-			bookmarks?.some((bookmark) => bookmark.movie_id === movie.id)
+			bookmarks?.some((bookmark) => bookmark.media_id === movie.id)
 	);
 
 	const bookmarkedShows = movieData.filter(
 		(data) =>
 			data.category === "TV Series" &&
-			bookmarks?.some((bookmark) => bookmark.movie_id === data.id)
+			bookmarks?.some((bookmark) => bookmark.media_id === data.id)
 	);
 
-	console.log(bookmarkedMovies);
+	console.log(bookmarks);
 
 	return (
 		<div className="w-full max-w-[1240px] pb-2 px-4">

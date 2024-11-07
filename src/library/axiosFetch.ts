@@ -4,14 +4,15 @@ export const axiosFetch = async (url: string) => {
 	const response = await axios.get(url);
 	return response.data;
 };
-export const axiosPost = async (userId: string, movieId: number) => {
+
+export const axiosPost = async (userId: string, mediaId: number) => {
 	try {
 		const response = await axios.post("http://localhost:3000/api/bookmarks", {
 			user_id: userId,
-			movie_id: movieId,
+			media_id: mediaId,
 		});
 
-		console.log("Bookmark added:", response.data);
+		console.log("Bookmark added");
 	} catch (error) {
 		console.error(error);
 	}

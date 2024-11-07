@@ -1,10 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../library/authProvider";
 import { axiosPost } from "../library/axiosFetch";
 import { RecommendedCardProps } from "../library/types";
 
 export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	const { user } = useAuth();
-
+	const navigate = useNavigate();
 	const setBookmark = () => {
 		if (user) {
 			try {
@@ -13,6 +14,8 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 			} catch (error) {
 				console.log(error);
 			}
+		} else {
+			navigate("/login");
 		}
 	};
 	return (

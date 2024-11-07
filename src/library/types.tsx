@@ -54,7 +54,7 @@ export interface BookmarksProps {
 export interface Bookmark {
 	id: string;
 	user_id: string;
-	movie_id: number;
+	media_id: number;
 }
 
 export interface MovieDataProps {
