@@ -13,6 +13,7 @@ import { Login } from "./routes/login";
 import { useQuery } from "@tanstack/react-query";
 import { axiosFetch } from "./library/axiosFetch";
 import { useAuth } from "./library/authProvider";
+import { BookmarkContext } from "./library/bookmarkContext";
 
 function App() {
 	const { user } = useAuth();
@@ -65,7 +66,11 @@ function App() {
 		},
 	]);
 
-	return <RouterProvider router={router} />;
+	return (
+		<BookmarkContext.Provider value={bookmarks}>
+			<RouterProvider router={router} />{" "}
+		</BookmarkContext.Provider>
+	);
 }
 
 export default App;

@@ -2,10 +2,27 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../library/authProvider";
 import { axiosPost } from "../library/axiosFetch";
 import { RecommendedCardProps } from "../library/types";
+import { useContext, useEffect, useState } from "react";
+import { BookmarkContext } from "../library/bookmarkContext";
 
 export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	const { user } = useAuth();
 	const navigate = useNavigate();
+	const bookmarks = useContext(BookmarkContext);
+	const [isFavourite, setIsFavourite] = useState(false);
+
+	useEffect(() => {
+		if (!bookmarks) return;
+
+		const isBookmarked = bookmarks.some(
+			(bookmark) => bookmark.media_id === movie.id
+		);
+
+		setIsFavourite(isBookmarked);
+	}, [bookmarks]);
+
+	console.log(user);
+
 	const setBookmark = () => {
 		if (user) {
 			try {
@@ -18,6 +35,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 			navigate("/login");
 		}
 	};
+
 	return (
 		<div className="max-w-[160px] max-h-[150px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-[246px]  rounded-2xl relative group/play">
 			<div className="max-w-[160px] max-h-[103px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-full relative">

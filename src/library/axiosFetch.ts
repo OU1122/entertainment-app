@@ -17,3 +17,15 @@ export const axiosPost = async (userId: string, mediaId: number) => {
 		console.error(error);
 	}
 };
+
+export const axiosDelete = async (bookmarkId: number) => {
+	try {
+		const response = await axios.delete(
+			`http://localhost:3000/api/bookmarks/${bookmarkId}`
+		);
+
+		console.log("Bookmark deleted");
+	} catch (error) {
+		console.error(error);
+	}
+};

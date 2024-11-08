@@ -1,3 +1,4 @@
+import { useAuth } from "../library/authProvider";
 import { CollectionComponentProps } from "../library/types";
 import { RecommendedCard } from "./recommendedCard";
 
@@ -5,6 +6,8 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	movieData,
 	bookmarks,
 }) => {
+	const { user } = useAuth();
+
 	const bookmarkedMovies = movieData.filter(
 		(movie) =>
 			movie.category === "Movie" &&
