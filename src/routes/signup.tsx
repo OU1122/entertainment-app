@@ -11,6 +11,7 @@ export const Signup: React.FC = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
 		await signUp(email, password);
 		if (user) {
 			navigate("/");

@@ -6,8 +6,8 @@ export type AuthContextType = {
 	loading: boolean;
 	error: string | null;
 	signUp: (email: string, password: string) => Promise<void>;
-	signIn: (email: string, password: string) => Promise<void>;
-	signOut: () => Promise<void>;
+	signIn?: (email: string, password: string) => Promise<void>;
+	signOut?: () => Promise<void>;
 };
 
 export interface AuthProviderProps {

@@ -21,8 +21,6 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 		setIsFavourite(isBookmarked);
 	}, [bookmarks]);
 
-	console.log(user);
-
 	const setBookmark = () => {
 		if (user) {
 			try {

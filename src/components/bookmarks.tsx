@@ -7,7 +7,7 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	bookmarks,
 }) => {
 	const { user } = useAuth();
-
+	console.log(user);
 	const bookmarkedMovies = movieData.filter(
 		(movie) =>
 			movie.category === "Movie" &&

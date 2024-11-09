@@ -4,8 +4,15 @@ import { createClient, User } from "@supabase/supabase-js";
 
 const supabase = createClient(
 	"https://mtdxodsbbwnvqdxpaqrl.supabase.co",
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10ZHhvZHNiYndudnFkeHBhcXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk4NjYxNDcsImV4cCI6MjA0NTQ0MjE0N30.Vpb6InT8sdTsC3DueR1GQEyyMuoZjvFIO4PvuH76ayM"
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10ZHhvZHNiYndudnFkeHBhcXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk4NjYxNDcsImV4cCI6MjA0NTQ0MjE0N30.Vpb6InT8sdTsC3DueR1GQEyyMuoZjvFIO4PvuH76ayM",
+	{
+		auth: {
+			persistSession: true, // Enables session persistence in localStorage
+			storage: localStorage, // Specifies localStorage as the storage method
+		},
+	}
 );
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
@@ -17,23 +24,28 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-	const [user, setUser] = useState<User | null>(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string | null>(null);
+	const [user, setUser] = useState<null | User>(null);
+	const [error, setError] = useState<null | string>(null);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const {
-			data: { subscription },
-		} = supabase.auth.onAuthStateChange((event, session) => {
-			setUser(session?.user ?? null);
-			setLoading(false);
-		});
-		return () => {
-			subscription.unsubscribe();
+		// Check the current session and set the user if available
+		const getSession = async () => {
+			const {
+				data: { session },
+				error,
+			} = await supabase.auth.getSession();
+			if (session) {
+				setUser(session.user); // Set the user from the session
+			} else if (error) {
+				setError(error.message); // Handle error if any
+			}
 		};
+
+		getSession();
 	}, []);
 
-	// Function to handle user sign-up
+	// Sign up + Log in
 	const signUp = async (email: string, password: string) => {
 		setLoading(true);
 		setError(null);
@@ -42,44 +54,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 		if (error) {
 			setError(error.message);
-		} else if (data.user) {
-			setUser(data.user);
+			setLoading(false);
+			return;
 		}
 
-		setLoading(false);
-	};
+		const { data: signInData, error: signInError } =
+			await supabase.auth.signInWithPassword({
+				email,
+				password,
+			});
 
-	// Function to handle user login
-	const signIn = async (email: string, password: string) => {
-		setLoading(true);
-		setError(null);
-
-		const { data, error } = await supabase.auth.signInWithPassword({
-			email,
-			password,
-		});
-
-		if (error) {
-			setError(error.message);
-		} else if (data.user) {
-			setUser(data.user);
+		if (signInError) {
+			setError(signInError.message);
+		} else {
+			setUser(signInData?.user);
+			console.log("User logged in successfully:", signInData);
 		}
 
-		setLoading(false);
-	};
-
-	// Function to handle user logout
-	const signOut = async () => {
-		setLoading(true);
-		setError(null);
-		await supabase.auth.signOut();
-		setUser(null);
 		setLoading(false);
 	};
 
 	return (
-		<AuthContext.Provider
-			value={{ user, loading, error, signUp, signIn, signOut }}>
+		<AuthContext.Provider value={{ user, loading, error, signUp }}>
 			{children}
 		</AuthContext.Provider>
 	);

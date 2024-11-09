@@ -1,7 +1,10 @@
 import axios from "axios";
+import { useAuth } from "./authProvider";
 
 export const axiosFetch = async (url: string) => {
-	const response = await axios.get(url);
+	const { user } = useAuth();
+	const headers = user ? { Authorization: `Bearer ${user.id}` } : {};
+	const response = await axios.get(url, { headers });
 	return response.data;
 };
 
