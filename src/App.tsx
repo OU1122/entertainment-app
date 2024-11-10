@@ -11,7 +11,7 @@ import { Bookmarks } from "./routes/bookmarks";
 import { Signup } from "./routes/signup";
 import { Login } from "./routes/login";
 import { useQuery } from "@tanstack/react-query";
-import { axiosFetch } from "./library/axiosFetch";
+import { axiosFetch, axiosFetchBookmarks } from "./library/axiosFetch";
 import { useAuth } from "./library/authProvider";
 import { BookmarkContext } from "./library/bookmarkContext";
 
@@ -25,7 +25,8 @@ function App() {
 
 	const { data: bookmarks } = useQuery({
 		queryKey: ["bookmarks"],
-		queryFn: () => axiosFetch("http://localhost:3000/api/bookmarks"),
+		queryFn: () =>
+			axiosFetchBookmarks("http://localhost:3000/api/bookmarks", user),
 	});
 
 	const router = createBrowserRouter([

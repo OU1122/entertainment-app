@@ -1,4 +1,3 @@
-import { useAuth } from "../library/authProvider";
 import { CollectionComponentProps } from "../library/types";
 import { RecommendedCard } from "./recommendedCard";
 
@@ -6,8 +5,6 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 	movieData,
 	bookmarks,
 }) => {
-	const { user } = useAuth();
-	console.log(user);
 	const bookmarkedMovies = movieData.filter(
 		(movie) =>
 			movie.category === "Movie" &&
@@ -19,8 +16,6 @@ export const BookmarksComponent: React.FC<CollectionComponentProps> = ({
 			data.category === "TV Series" &&
 			bookmarks?.some((bookmark) => bookmark.media_id === data.id)
 	);
-
-	console.log(bookmarks);
 
 	return (
 		<div className="w-full max-w-[1240px] pb-2 px-4">

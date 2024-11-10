@@ -7,8 +7,8 @@ const supabase = createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10ZHhvZHNiYndudnFkeHBhcXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk4NjYxNDcsImV4cCI6MjA0NTQ0MjE0N30.Vpb6InT8sdTsC3DueR1GQEyyMuoZjvFIO4PvuH76ayM",
 	{
 		auth: {
-			persistSession: true, // Enables session persistence in localStorage
-			storage: localStorage, // Specifies localStorage as the storage method
+			persistSession: true,
+			storage: localStorage,
 		},
 	}
 );
@@ -29,16 +29,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		// Check the current session and set the user if available
 		const getSession = async () => {
 			const {
 				data: { session },
 				error,
 			} = await supabase.auth.getSession();
 			if (session) {
-				setUser(session.user); // Set the user from the session
+				setUser(session.user);
 			} else if (error) {
-				setError(error.message); // Handle error if any
+				setError(error.message);
 			}
 		};
 

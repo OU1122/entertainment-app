@@ -44,12 +44,20 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 
 				<div
 					onClick={setBookmark}
-					className="absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10">
-					<img
-						src="./assets/icon-bookmark-empty.svg"
-						alt="bookmark"
-						className="filter group-hover:brightness-100 group-hover:invert transition-all ease-in"
-					/>
+					className={`absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
+					{isFavourite ? (
+						<img
+							src="./assets/icon-bookmark-empty.svg"
+							alt="bookmark"
+							className={`transition-all ease-in`}
+						/>
+					) : (
+						<img
+							src="./assets/icon-bookmark-empty.svg"
+							alt="bookmark"
+							className={` filter group-hover:brightness-100 group-hover:invert transition-all ease-in`}
+						/>
+					)}
 				</div>
 				{/* Hover EFfect Overlay*/}
 				<div className="absolute inset-0 bg-DarkBlue/50 opacity-0 group-hover/play:opacity-100 rounded-2xl cursor-pointer transition-opacity duration-200">
