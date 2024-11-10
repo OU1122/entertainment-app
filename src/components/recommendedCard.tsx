@@ -5,12 +5,15 @@ import { RecommendedCardProps } from "../library/types";
 import { useContext, useEffect, useState } from "react";
 import { BookmarkContext } from "../library/bookmarkContext";
 
+import { useBookmarkMutation } from "../hooks/useBookmarkMutation";
+
 export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	const { user } = useAuth();
 	const navigate = useNavigate();
 	const bookmarks = useContext(BookmarkContext);
 	const [isFavourite, setIsFavourite] = useState(false);
 
+	const { mutate: addBookmark } = useBookmarkMutation();
 	useEffect(() => {
 		if (!bookmarks) return;
 
@@ -23,12 +26,17 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 
 	const setBookmark = () => {
 		if (user) {
-			try {
-				const response = axiosPost(user.id, movie.id);
-				console.log(response);
-			} catch (error) {
-				console.log(error);
-			}
+			addBookmark(
+				{ userId: user.id, mediaId: movie.id },
+				{
+					onSuccess: () => {
+						console.log("Bookmark added successfully");
+					},
+					onError: (error) => {
+						console.error("Error adding bookmark:", error);
+					},
+				}
+			);
 		} else {
 			navigate("/login");
 		}
