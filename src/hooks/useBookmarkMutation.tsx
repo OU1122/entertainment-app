@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { axiosPost } from "../library/axiosFetch";
+import { axiosDelete, axiosPost } from "../library/axiosFetch";
 
 export const useBookmarkMutation = () => {
 	const queryClient = useQueryClient();
@@ -9,6 +9,20 @@ export const useBookmarkMutation = () => {
 			axiosPost(params.userId, params.mediaId),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["bookmarks"] });
+		},
+	});
+};
+export const useDeleteBookmarkMutation = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationFn: ({ bookmarkId }: { bookmarkId: number | string }) =>
+			axiosDelete({ bookmarkId }),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["bookmarks"] });
+		},
+		onError: (error) => {
+			console.error("Error deleting bookmark:", error);
 		},
 	});
 };

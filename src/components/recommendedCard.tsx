@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../library/authProvider";
-import { axiosPost } from "../library/axiosFetch";
 import { RecommendedCardProps } from "../library/types";
 import { useContext, useEffect, useState } from "react";
 import { BookmarkContext } from "../library/bookmarkContext";
 
-import { useBookmarkMutation } from "../hooks/useBookmarkMutation";
+import {
+	useBookmarkMutation,
+	useDeleteBookmarkMutation,
+} from "../hooks/useBookmarkMutation";
 
 export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	const { user } = useAuth();
@@ -14,6 +16,8 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	const [isFavourite, setIsFavourite] = useState(false);
 
 	const { mutate: addBookmark } = useBookmarkMutation();
+	const { mutate: deleteBookmark } = useDeleteBookmarkMutation();
+
 	useEffect(() => {
 		if (!bookmarks) return;
 
@@ -24,21 +28,33 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 		setIsFavourite(isBookmarked);
 	}, [bookmarks]);
 
-	const setBookmark = () => {
-		if (user) {
+	const toggleBookmark = () => {
+		if (!user) {
+			navigate("/login");
+			return;
+		}
+
+		const bookmark = bookmarks?.find((b) => b.media_id === movie.id);
+		console.log(bookmark);
+
+		if (bookmark) {
+			deleteBookmark(
+				{ bookmarkId: bookmark.id },
+				{
+					onError: (error) => {
+						console.error("Error removing bookmark:", error);
+					},
+				}
+			);
+		} else {
 			addBookmark(
 				{ userId: user.id, mediaId: movie.id },
 				{
-					onSuccess: () => {
-						console.log("Bookmark added successfully");
-					},
 					onError: (error) => {
 						console.error("Error adding bookmark:", error);
 					},
 				}
 			);
-		} else {
-			navigate("/login");
 		}
 	};
 
@@ -51,7 +67,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 					alt={movie.title}></img>
 				{isFavourite ? (
 					<div
-						onClick={setBookmark}
+						onClick={toggleBookmark}
 						className={`absolute top-4 right-4 h-8 w-8 rounded-full bg-White/70 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
 						<img
 							src="./assets/icon-bookmark-empty.svg"
@@ -61,7 +77,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 					</div>
 				) : (
 					<div
-						onClick={setBookmark}
+						onClick={toggleBookmark}
 						className={`absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
 						<img
 							src="./assets/icon-bookmark-empty.svg"
