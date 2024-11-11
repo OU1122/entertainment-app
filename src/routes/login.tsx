@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 
 export const Login: React.FC = () => {
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+		await signUp(email, password);
+		if (user) {
+			navigate("/");
+		} else {
+			console.error("Sign up failed:", error);
+		}
+	};
+
 	return (
 		<div className="max-w-[1240px] h-screen w-full mx-auto flex flex-col items-center justify-center px-6 gap-16">
 			<div className="mt-6">
@@ -15,7 +26,9 @@ export const Login: React.FC = () => {
 				<h2 className="text-White w-full text-[32px] font-extralight">
 					Login
 				</h2>
-				<form className="flex flex-col items-stretch justify-center gap-3 w-full font-extralight ">
+				<form
+					onSubmit={handleSubmit}
+					className="flex flex-col items-stretch justify-center gap-3 w-full font-extralight ">
 					<input
 						className="bg-SemiDarkBlue px-4 py-2  caret-Red placeholder-opacity-40 text-White  border-b-LightBlue border-b-[1px] focus:border-b-White focus:outline-none transition-all duration-300"
 						type="email"
