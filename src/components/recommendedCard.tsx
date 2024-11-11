@@ -14,6 +14,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 	const navigate = useNavigate();
 	const bookmarks = useContext(BookmarkContext);
 	const [isFavourite, setIsFavourite] = useState(false);
+	const [toggleEffect, setToggleEffect] = useState(false);
 
 	const { mutate: addBookmark } = useBookmarkMutation();
 	const { mutate: deleteBookmark } = useDeleteBookmarkMutation();
@@ -56,11 +57,14 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 				}
 			);
 		}
+		setToggleEffect(true);
+		setTimeout(() => setToggleEffect(false), 300);
+		setIsFavourite(!isFavourite);
 	};
 
 	return (
 		<div className="max-w-[160px] max-h-[150px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-[246px]  rounded-2xl relative group/play">
-			<div className="max-w-[160px] max-h-[103px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-full relative">
+			<div className="max-w-[160px] max-h-[103px] lg:max-w-[220px] xl:max-w-[280px] lg:max-h-full relative ">
 				<img
 					src={movie.thumbnail.regular.large}
 					className="object-cover rounded-2xl w-full h-full"
@@ -68,7 +72,9 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 				{isFavourite ? (
 					<div
 						onClick={toggleBookmark}
-						className={`absolute top-4 right-4 h-8 w-8 rounded-full bg-White/70 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
+						className={`${
+							toggleEffect ? "scale-125" : ""
+						} absolute top-4 right-4 h-8 w-8 rounded-full bg-White/70 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
 						<img
 							src="./assets/icon-bookmark-empty.svg"
 							alt="bookmark"
@@ -78,7 +84,9 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 				) : (
 					<div
 						onClick={toggleBookmark}
-						className={`absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
+						className={`${
+							toggleEffect ? "scale-125" : ""
+						} absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
 						<img
 							src="./assets/icon-bookmark-empty.svg"
 							alt="bookmark"
