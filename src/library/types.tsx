@@ -6,7 +6,7 @@ export type AuthContextType = {
 	loading: boolean;
 	error: string | null;
 	signUp: (email: string, password: string) => Promise<void>;
-	signIn?: (email: string, password: string) => Promise<void>;
+	signIn: (email: string, password: string) => Promise<void>;
 	signOut?: () => Promise<void>;
 };
 
@@ -15,6 +15,13 @@ export interface AuthProviderProps {
 }
 
 export type SearchProps = {
+	searchQuery: string | null;
+	setSearchQuery: Dispatch<SetStateAction<string | null>>;
+	type?: "movies" | "TV series" | "bookmarks";
+};
+
+export type SearchResultsProps = {
+	movieData: Movie[];
 	searchQuery: string | null;
 	setSearchQuery: Dispatch<SetStateAction<string | null>>;
 	type?: "movies" | "TV series" | "bookmarks";
@@ -62,7 +69,7 @@ export interface MovieDataProps {
 }
 export interface CollectionComponentProps extends MovieDataProps {
 	type: string;
-	bookmarks: Bookmark[] | null;
+	bookmarks?: Bookmark[] | null;
 }
 
 export interface TrendingCardProps {

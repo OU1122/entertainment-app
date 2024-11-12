@@ -6,8 +6,11 @@ export const BookmarkSearchResult: React.FC<BookmarkSearchResultsProps> = ({
 	searchQuery,
 	bookmarks,
 }) => {
-	let searchResults = movieData.filter((data) => data.is_bookmarked);
-	console.log(bookmarks);
+	// Find movie.id === bookmarks.media_id
+	let searchResults = movieData.filter((movie) =>
+		bookmarks.some((bookmark) => bookmark.media_id === movie.id)
+	);
+
 	if (searchQuery) {
 		searchResults = searchResults.filter((data) =>
 			data.title.toLowerCase().includes(searchQuery.toLowerCase())

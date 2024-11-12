@@ -36,7 +36,6 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 		}
 
 		const bookmark = bookmarks?.find((b) => b.media_id === movie.id);
-		console.log(bookmark);
 
 		if (bookmark) {
 			deleteBookmark(
@@ -85,7 +84,7 @@ export const RecommendedCard: React.FC<RecommendedCardProps> = ({ movie }) => {
 					<div
 						onClick={toggleBookmark}
 						className={`${toggleEffect ? "custom-bounce" : ""}
-						} absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50 hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
+						} absolute top-4 right-4 h-8 w-8 rounded-full bg-DarkBlue/50  hover:bg-White flex items-center justify-center group transition-all ease-in z-10`}>
 						<img
 							src="./assets/icon-bookmark-empty.svg"
 							alt="bookmark"

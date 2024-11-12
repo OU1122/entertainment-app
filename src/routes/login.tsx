@@ -1,14 +1,25 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAuth } from "../library/authProvider";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login: React.FC = () => {
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
+	const { signIn, error, user } = useAuth();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
-		await signUp(email, password);
+	useEffect(() => {
 		if (user) {
 			navigate("/");
-		} else {
-			console.error("Sign up failed:", error);
+		}
+	}, [user, navigate]);
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		try {
+			await signIn(email, password);
+		} catch (err) {
+			console.error("Sign in failed:", error);
 		}
 	};
 
@@ -32,11 +43,15 @@ export const Login: React.FC = () => {
 					<input
 						className="bg-SemiDarkBlue px-4 py-2  caret-Red placeholder-opacity-40 text-White  border-b-LightBlue border-b-[1px] focus:border-b-White focus:outline-none transition-all duration-300"
 						type="email"
-						placeholder="Email address"></input>
+						placeholder="Email address"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}></input>
 
 					<input
 						className="bg-SemiDarkBlue px-4 py-2 mb-4 caret-Red placeholder-opacity-40 text-White  border-b-LightBlue border-b-[1px] focus:border-b-White focus:outline-none transition-all duration-300"
 						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 						placeholder="Password"></input>
 
 					<button

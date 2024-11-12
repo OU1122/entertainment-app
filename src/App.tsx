@@ -24,9 +24,11 @@ function App() {
 	});
 
 	const { data: bookmarks } = useQuery({
-		queryKey: ["bookmarks"],
+		queryKey: ["bookmarks", user?.id],
 		queryFn: () =>
 			axiosFetchBookmarks("http://localhost:3000/api/bookmarks", user),
+		enabled: !!user,
+		initialData: [],
 	});
 
 	const router = createBrowserRouter([
@@ -48,10 +50,15 @@ function App() {
 				},
 				{
 					path: "/bookmarks/",
-					element: (
+					element: user ? (
 						<Bookmarks
 							movieData={movies || []}
 							bookmarks={bookmarks}
+						/>
+					) : (
+						<Navigate
+							to="/login"
+							replace
 						/>
 					),
 				},

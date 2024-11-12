@@ -49,7 +49,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 		setLoading(true);
 		setError(null);
 
-		const { data, error } = await supabase.auth.signUp({ email, password });
+		const { error } = await supabase.auth.signUp({ email, password });
 
 		if (error) {
 			setError(error.message);
@@ -67,14 +67,32 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 			setError(signInError.message);
 		} else {
 			setUser(signInData?.user);
-			console.log("User logged in successfully:", signInData);
+		}
+
+		setLoading(false);
+	};
+	// Sign in
+	const signIn = async (email: string, password: string) => {
+		setLoading(true);
+		setError(null);
+
+		const { data, error } = await supabase.auth.signInWithPassword({
+			email,
+			password,
+		});
+		if (error) {
+			setError(error.message);
+			setLoading(false);
+			return;
+		} else {
+			setUser(data?.user);
 		}
 
 		setLoading(false);
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, loading, error, signUp }}>
+		<AuthContext.Provider value={{ user, loading, error, signUp, signIn }}>
 			{children}
 		</AuthContext.Provider>
 	);

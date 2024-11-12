@@ -121,7 +121,7 @@ export const SideBar: React.FC = () => {
 					<Link to="/">
 						<img
 							className="w-10 h-10 border-White border rounded-full"
-							src="../src/assets/image-avatar.png"
+							src="../src/assets/image-avatar.jpg"
 							alt=""
 						/>
 					</Link>
