@@ -8,7 +8,7 @@ export const Search = ({
 	return (
 		<form className="flex items-center mb-6 px-4">
 			<span>
-				<img src="../src/assets/icon-search.svg"></img>
+				<img src="../public/assets/icon-search.svg"></img>
 			</span>
 			<input
 				value={searchQuery || ""}
