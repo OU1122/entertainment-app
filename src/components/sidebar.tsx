@@ -11,7 +11,7 @@ export const SideBar: React.FC = () => {
 				<div className="flex items-center justify-center md:flex-col">
 					<div className="lg:mb-10 mb-0 flex items-center justify-center px-2 lg:px-0 ">
 						<img
-							src="../public/assets/logo.svg"
+							src="/public/assets/logo.svg"
 							alt=""
 						/>
 					</div>
@@ -121,7 +121,7 @@ export const SideBar: React.FC = () => {
 					<Link to="/">
 						<img
 							className="w-10 h-10 border-White border rounded-full"
-							src="../public/assets/image-avatar.jpg"
+							src="/public/assets/image-avatar.jpg"
 							alt=""
 						/>
 					</Link>
