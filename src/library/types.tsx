@@ -5,6 +5,7 @@ export type AuthContextType = {
 	user: User | null;
 	loading: boolean;
 	error: string | null;
+	setError: Dispatch<SetStateAction<string | null>>;
 	signUp: (email: string, password: string) => Promise<void>;
 	signIn: (email: string, password: string) => Promise<void>;
 	signOut?: () => Promise<void>;

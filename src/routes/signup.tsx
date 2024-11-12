@@ -6,17 +6,23 @@ export const Signup: React.FC = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordCheck, setPasswordCheck] = useState("");
-	const { signUp, loading, error, user } = useAuth();
+	const { signUp, loading, error, setError, user } = useAuth();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		await signUp(email, password);
-		if (user) {
-			navigate("/");
+		if (password === passwordCheck) {
+			try {
+				await signUp(email, password);
+				if (user) {
+					navigate("/");
+				} else {
+					console.error("Sign up failed:", error);
+				}
+			} catch (error) {}
 		} else {
-			console.error("Sign up failed:", error);
+			setError("Password does not match");
 		}
 	};
 
@@ -62,15 +68,15 @@ export const Signup: React.FC = () => {
 						className="bg-Red max-h-[48px] rounded-lg text-White text-[15px] p-4 hover:text-DarkBlue hover:bg-White flex items-center justify-center transition-colors ease-in">
 						Create an account
 					</button>
-					{error && <p>{error}</p>}
+					{error && <p className="self-center text-Red">{error}</p>}
 				</form>
 				<p className="text-White self-center font-extralight">
 					Already have an account?{" "}
-					<Link to={"/login"}>
-						<span className="text-Red font-bold cursor-pointer">
-							Log in
-						</span>
-					</Link>
+					<span
+						onClick={() => (window.location.href = "/login")}
+						className="text-Red font-bold cursor-pointer">
+						Log in
+					</span>
 				</p>
 			</div>
 		</div>

@@ -59,14 +59,15 @@ export const Login: React.FC = () => {
 						className="bg-Red max-h-[48px] rounded-lg text-White text-[15px] p-4 hover:text-DarkBlue hover:bg-White flex items-center justify-center transition-colors ease-in">
 						Login to your account
 					</button>
+					{error && <p className="self-center text-Red">{error}</p>}
 				</form>
 				<p className="text-White self-center font-extralight">
 					Don't have an account?{" "}
-					<Link to={"/signup"}>
-						<span className="text-Red font-bold cursor-pointer">
-							Sign Up
-						</span>
-					</Link>
+					<span
+						onClick={() => (window.location.href = "/signup")}
+						className="text-Red font-bold cursor-pointer">
+						Sign Up
+					</span>
 				</p>
 			</div>
 		</div>
