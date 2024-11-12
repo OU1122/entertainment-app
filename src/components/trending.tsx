@@ -38,7 +38,7 @@ export const Trending: React.FC<MovieDataProps> = ({ movieData }) => {
 						},
 					}}
 					onSwiper={(swiper) => {
-						swiper.on("progress", (progress) => {});
+						swiper.on("progress", () => {});
 						swiper.on("slideChange", () => {});
 					}}>
 					{trendingMovies.map((movie, index) => (

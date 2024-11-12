@@ -14,10 +14,13 @@ export const axiosFetch = async (url: string) => {
 
 export const axiosPost = async (userId: string, mediaId: number) => {
 	try {
-		const response = await axios.post("http://localhost:3000/api/bookmarks", {
-			user_id: userId,
-			media_id: mediaId,
-		});
+		await axios.post(
+			"https://entertainment-app-server-e0gh.onrender.com/api/bookmarks",
+			{
+				user_id: userId,
+				media_id: mediaId,
+			}
+		);
 	} catch (error) {
 		console.error(error);
 	}
@@ -29,8 +32,8 @@ export const axiosDelete = async ({
 	bookmarkId: number | string;
 }) => {
 	try {
-		const response = await axios.delete(
-			`http://localhost:3000/api/bookmarks/${bookmarkId}`
+		await axios.delete(
+			`https://entertainment-app-server-e0gh.onrender.com/api/bookmarks/${bookmarkId}`
 		);
 	} catch (error) {
 		console.error(error);

@@ -20,13 +20,19 @@ function App() {
 
 	const { data: movies } = useQuery({
 		queryKey: ["posts"],
-		queryFn: () => axiosFetch("http://localhost:3000/api/movies"),
+		queryFn: () =>
+			axiosFetch(
+				"https://entertainment-app-server-e0gh.onrender.com/api/movies"
+			),
 	});
 
 	const { data: bookmarks } = useQuery({
 		queryKey: ["bookmarks", user?.id],
 		queryFn: () =>
-			axiosFetchBookmarks("http://localhost:3000/api/bookmarks", user),
+			axiosFetchBookmarks(
+				"hhttps://entertainment-app-server-e0gh.onrender.com/api/bookmarks",
+				user
+			),
 		enabled: !!user,
 		initialData: [],
 	});
