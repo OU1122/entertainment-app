@@ -37,6 +37,8 @@ function App() {
 		initialData: [],
 	});
 
+	console.log(user);
+	console.log(bookmarks);
 	const router = createBrowserRouter([
 		{
 			path: "/",
