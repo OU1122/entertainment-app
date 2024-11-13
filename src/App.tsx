@@ -30,7 +30,7 @@ function App() {
 		queryKey: ["bookmarks", user?.id],
 		queryFn: () =>
 			axiosFetchBookmarks(
-				"hhttps://entertainment-app-server-e0gh.onrender.com/api/bookmarks",
+				"https://entertainment-app-server-e0gh.onrender.com/api/bookmarks",
 				user
 			),
 		enabled: !!user,
